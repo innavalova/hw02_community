@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post, Group
+from django.shortcuts import get_object_or_404, render
+
+from .models import Group, Post
 
 
 def index(request):
@@ -15,7 +16,7 @@ def index(request):
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     title = f'Записи сообщества {group}'
-    posts = group.groups.all()[:10]
+    posts = group.posts.all()[:10]
     context = {
         'group': group,
         'title': title,
